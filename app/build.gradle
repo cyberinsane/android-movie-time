@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -14,6 +15,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "API_KEY", "\"3298880137172cea814f46805f3df4fe\""
+        buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/\""
     }
 
     buildTypes {
@@ -44,11 +48,26 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    // Navigation
     implementation 'androidx.navigation:navigation-fragment:2.2.1'
     implementation 'androidx.navigation:navigation-ui:2.2.1'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$arch_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$arch_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$arch_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$arch_version"
+
+    // Koin
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
